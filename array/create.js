@@ -18,6 +18,11 @@ console.log(numbers.length);
 var numbers = new Array(10);
 console.log(numbers.length);
 
+//length属性是可读写的，通过设置length属性，指定数组的长度
+var numbers = new Array();
+console.log('The initial length of array is ' + numbers.length);
+numbers.length = 10;
+console.log("The setting length of array is " + numbers.length);
 //通过isArray判断是否为数组
 var number = 3;
 var arr = [7,4,1776];

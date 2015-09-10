@@ -22,7 +22,7 @@ console.log(deepCopyNums);
 nums[0] = 999;
 console.log(deepCopyNums);
 
-//然而，上述的神赋值函数并不支持多维数组
+//然而，上述的深拷贝函数并不支持多维数组
 var multiNums = [1,2,[3,4],{a : 3,b : 2}];
 var deepCopyMultiNums = [];
 deepCopy(multiNums, deepCopyMultiNums);

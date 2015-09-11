@@ -1,0 +1,12 @@
+var Stack = require('./stack');
+var s = new Stack.object();
+s.push('David');
+s.push('Raymond');
+s.push('Bryan');
+console.log(s.length());
+console.log(s.peek() + ' ' + s.length());
+console.log(s.pop() + ' ' + s.length());
+console.log(s.empty() + ' ' + s.length());
+console.log(s.peek());
+s.clear();
+console.log(s.length());

@@ -28,6 +28,7 @@ LinkedList.prototype = {
 			var tmpNode = node.next;
 			node.next = node.next.next;
 			tmpNode = null;
+			return true;
 		}
 		else{
 			return false;

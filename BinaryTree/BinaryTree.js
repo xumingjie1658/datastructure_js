@@ -15,21 +15,12 @@ BinaryTree.prototype = {
 			root = node;
 		}
 		else if(node.element <= root.element){
-			if(root.left == null) {
-				root.left = node;
-			}
-			else {
-				this.insert(root.left,node);
-			}
+			root.left = this.insert(root.left,node);
 		}
 		else {
-			if( root.right == null) {
-				root.right = node;
-			}
-			else {
-				this.insert(root.right,node);
-			}
+			root.right = this.insert(root.right,node);
 		}
+		return root;
 	},
 
 	remove : function(root,element) {
@@ -51,14 +42,10 @@ BinaryTree.prototype = {
 				}
 			}
 			else if(root.element < element) {
-				if(root.right != null) {
-					root.right = this.remove(root.right,element);
-				}
+				root.right = this.remove(root.right,element);
 			}
 			else {
-				if(root.left != null) {
-					root.left = this.remove(root.left, element);
-				}
+				root.left = this.remove(root.left, element);
 			}
 		}
 		return root;

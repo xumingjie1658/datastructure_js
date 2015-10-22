@@ -7,7 +7,6 @@ function Node(element) {
 }
 
 function BinaryTree() {
-	this.root = null;
 }
 
 BinaryTree.prototype = {
@@ -15,66 +14,88 @@ BinaryTree.prototype = {
 		if(root == null) {
 			root = node;
 		}
-		else if(node <= root){
-			insert(root.left,node);
+		else if(node.element <= root.element){
+			if(root.left == null) {
+				root.left = node;
+			}
+			else {
+				this.insert(root.left,node);
+			}
 		}
 		else {
-			insert(root.right,node);
+			if( root.right == null) {
+				root.right = node;
+			}
+			else {
+				this.insert(root.right,node);
+			}
 		}
 	},
 
 	remove : function(root,element) {
 		if(root != null) {
 			if(root.element == element) {
-				if(root.element.left == null && root.element.right == null) {
+				if(root.left == null && root.right == null) {
 					root = null;
 				}
-				else if(root.element.left == null) {
+				else if(root.left == null) {
 					root = root.right;
 				}
-				else if(root.element.right == null) {
+				else if(root.right == null) {
 					root = root.left;
 				}
 				else {
 					var tmpNode = this.findMin(root.right);
 					root.element = tmpNode.element;
-					root.right = remove(root.right, root.element);
+					root.right = this.remove(root.right, root.element);
 				}
 			}
 			else if(root.element < element) {
-				root.right = delete(root.right,element);
+				if(root.right != null) {
+					root.right = this.remove(root.right,element);
+				}
 			}
 			else {
-				root.left = delete(root.left, element);
+				if(root.left != null) {
+					root.left = this.remove(root.left, element);
+				}
 			}
 		}
+		return root;
 	},
 
 	findMin : function(root) {
 		var node = root;
-		while(node) {
+		while(node.left) {
 			node = node.left;
 		}
 		return node;
 	},
 
-	preOrderTraversal : function() {
-
+	preOrderTraversal : function(root) {
+		if( root != null ) {
+			console.log(root.element);
+			this.preOrderTraversal(root.left);
+			this.preOrderTraversal(root.right);
+		}
 	},
 
-	inOrderTraversal : function() {
+	inOrderTraversal : function(root) {
+		if( root != null ) {
+			this.inOrderTraversal(root.left);
+			console.log(root.element);
+			this.inOrderTraversal(root.right);
+		}
+ 	},
 
-	},
-
-	postOrderTraversal : function() {
-
-	},
-
-	dfs : function() {
-
-	},
-
-	bfs : function() {
-
+	postOrderTraversal : function(root) {
+		if( root != null ){
+			this.postOrderTraversal(root.left);
+			this.postOrderTraversal(root.right);
+			console.log(root.element);
+		}
 	}
 }
+
+exports.node = Node;
+exports.tree = BinaryTree;
